@@ -1,0 +1,24 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>test</title>
+</head>
+<body>
+<script language="javascript">
+const uri = `https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/O-A0003-001?Authorization=CWB-B8590234-9EC2-423D-959F-A420E7D733EE&format=JSON`;
+function c1()
+{
+    var t=document.getElementById("txt");
+    fetch(uri, {method:'GET'})
+    .then(res => {
+    return res.json();})
+    .then(result => {
+    let city = result.cwbopendata.location[14].parameter[0].parameterValue;
+    let temp = result.cwbopendata.location[14].weatherElement[3].elementValue.value;
+    t.value=`${city}的氣溫為 ${temp} 度 C`;});		
+}
+</script>
+<input type="text" id="txt" value="高雄市的氣溫如何?" size="30"/>
+<input type="button" value="查詢" name="btn" onclick="c1();" />
+</body>
+</html>
